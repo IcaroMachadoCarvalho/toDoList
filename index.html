@@ -4,17 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>toDoList</title>
-    <link rel="stylesheet" href="./style/css/main.css">
+    <link rel="stylesheet" href="./style/css/main.css" />
   </head>
   <body>
-    <header>
-      <div>
-        <h1>toDoList</h1>
-      </div>
+    <header class="header">
+      <h1>toDoList</h1>
     </header>
     <main>
-        
+      <section class="search">
+        <div class="searchBar">
+          <form action="">
+            <input type="text" id="inputSearch" placeholder="Pesquise">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </form>
+        </div>
+      </section>
+      <section class="blockList">
+        <h1>Blocos</h1>
+        <div class="blocks"></div>
+        <div class="pagination">
+          <button><i class="fa-solid fa-chevron-left"></i></button>
+          <span>1</span>
+          <button><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </section>
     </main>
-    <footer></footer>
+    <footer class="footer">
+      <div class="footer__btn">
+        <button><i class="fa-solid fa-filter"></i></button>
+        <button><i class="fa-solid fa-plus"></i></button>
+        <button><i class="fa-solid fa-palette"></i></button>
+      </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/cad3e76647.js" crossorigin="anonymous"></script>
   </body>
 </html>

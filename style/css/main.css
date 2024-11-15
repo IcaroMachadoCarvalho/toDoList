@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 *,
 *::before,
 *::after {
@@ -45,7 +45,133 @@ body {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "poppins", sans-serif;
+}
+
+.header {
+  width: 100%;
+  height: 107px;
+  border: 3px solid #686D76;
+  border-bottom-right-radius: 60px;
+  border-bottom-left-radius: 60px;
+}
+.header h1 {
+  text-align: center;
+  padding: 15px;
+  font-size: 2.4rem;
+  font-weight: normal;
+}
+
+main {
+  padding: 2rem 1.5rem 0rem 1.5rem;
+}
+main .search {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+main .search .searchBar {
+  width: 100%;
+  height: 1rem;
+  border: 2px solid #686D76;
+  padding: 1rem;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+main .search .searchBar form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: space-between;
+}
+main .blockList {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+main .blockList h1 {
+  align-self: flex-start;
+}
+main .blockList .pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: space-around;
+  width: 60%;
+  margin-bottom: 2rem;
+}
+main .blockList .pagination span {
+  text-align: center;
+  padding: 0.4rem 0rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 1rem;
+  border: 1px solid #111111;
+  border-radius: 50px;
+  font-weight: bold;
+}
+main .blockList .pagination button {
+  background-color: #111111;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50px;
+  transition: background-color 0.4s;
+}
+main .blockList .pagination button i {
+  color: white;
+  transition: 0.4s;
+}
+main .blockList .pagination button:hover, main .blockList .pagination button:focus {
+  background-color: white;
+  border: 1px solid #111111;
+}
+main .blockList .pagination button:hover i, main .blockList .pagination button:focus i {
+  color: #111111;
+}
+
+.footer {
+  width: 100%;
+  height: 120px;
+  position: fixed;
+  bottom: 0;
+  border: 3px solid #686D76;
+  border-top-right-radius: 60px;
+  border-top-left-radius: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.footer .footer__btn {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+.footer .footer__btn button {
+  background-color: #111111;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50px;
+  transition: border background-color 0.4s;
+}
+.footer .footer__btn button i {
+  color: white;
+  transition: 0.4s;
+}
+.footer .footer__btn button:hover, .footer .footer__btn button:focus {
+  background-color: white;
+  border: 1px solid #111111;
+}
+.footer .footer__btn button:hover i, .footer .footer__btn button:focus i {
+  color: #111111;
 }
 
 /*# sourceMappingURL=main.css.map */
