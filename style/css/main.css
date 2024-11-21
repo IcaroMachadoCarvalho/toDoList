@@ -50,8 +50,8 @@ body {
 
 .header {
   width: 100%;
-  height: 107px;
-  border: 3px solid #686D76;
+  height: 92px;
+  border: 3px solid #686d76;
   border-bottom-right-radius: 60px;
   border-bottom-left-radius: 60px;
 }
@@ -63,16 +63,18 @@ body {
 }
 
 main {
-  padding: 2rem 1.5rem 0rem 1.5rem;
+  padding: 1rem 1.5rem 0rem 1.5rem;
 }
 main .search {
   width: 100%;
-  margin-bottom: 2rem;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  border-radius: 16px;
 }
 main .search .searchBar {
   width: 100%;
-  height: 1rem;
-  border: 2px solid #686D76;
+  height: 100%;
+  border: 2px solid #686d76;
   padding: 1rem;
   border-radius: 28px;
   display: flex;
@@ -82,23 +84,100 @@ main .search .searchBar {
 }
 main .search .searchBar form {
   width: 100%;
+  gap: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: space-between;
 }
+main .search .searchBar form svg {
+  height: 1.5rem;
+  width: 1.1rem;
+  vertical-align: -0.125em;
+  transition: 0.4s;
+}
+main .search .searchBar form svg path {
+  fill: #686d76;
+}
+main .search .searchBar form svg:hover path, main .search .searchBar form svg:focus path {
+  fill: #111111;
+}
+main .search .searchBar form input:focus {
+  outline: none;
+}
 main .blockList {
   width: 100%;
-  height: 200px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.8rem;
 }
-main .blockList h1 {
-  align-self: flex-start;
+main .blockList__title {
+  align-self: start;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+main .blockList .blocks {
+  width: 100%;
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 1rem;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+main .blockList .blocks__item {
+  background-color: #ff8000;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
+  border: none;
+  border-radius: 30px;
+}
+main .blockList .blocks__item p {
+  width: 100%;
+  padding: 0.5rem 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+main .blockList .blocks__item .item__edit {
+  align-self: end;
+  background-color: #111111;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0.8rem;
+  border: none;
+  border-radius: 50px;
+  transition: 0.4s;
+}
+main .blockList .blocks__item .item__edit svg {
+  height: 1rem;
+  width: 1rem;
+  vertical-align: -0.125em;
+}
+main .blockList .blocks__item .item__edit svg path {
+  fill: white;
+}
+main .blockList .blocks__item .item__edit:hover, main .blockList .blocks__item .item__edit:focus {
+  background-color: white;
+  border: 1px solid #111111;
+}
+main .blockList .blocks__item .item__edit:hover svg path, main .blockList .blocks__item .item__edit:focus svg path {
+  fill: #111111;
+}
+main .blockList .blocks__item .item__edit:hover, main .blockList .blocks__item .item__edit:focus {
+  border: none;
 }
 main .blockList .pagination {
   display: flex;
@@ -106,7 +185,6 @@ main .blockList .pagination {
   justify-content: center;
   align-items: space-around;
   width: 60%;
-  margin-bottom: 2rem;
 }
 main .blockList .pagination span {
   text-align: center;
@@ -125,53 +203,65 @@ main .blockList .pagination button {
   border-radius: 50px;
   transition: background-color 0.4s;
 }
-main .blockList .pagination button i {
-  color: white;
-  transition: 0.4s;
+main .blockList .pagination button svg {
+  height: 1rem;
+  width: 1rem;
+  vertical-align: -0.125em;
+}
+main .blockList .pagination button svg path {
+  fill: white;
 }
 main .blockList .pagination button:hover, main .blockList .pagination button:focus {
   background-color: white;
   border: 1px solid #111111;
 }
-main .blockList .pagination button:hover i, main .blockList .pagination button:focus i {
-  color: #111111;
+main .blockList .pagination button:hover svg path, main .blockList .pagination button:focus svg path {
+  fill: #111111;
 }
 
 .footer {
+  background-color: white;
   width: 100%;
-  height: 120px;
+  height: 92px;
   position: fixed;
   bottom: 0;
-  border: 3px solid #686D76;
+  border: 3px solid #686d76;
   border-top-right-radius: 60px;
   border-top-left-radius: 60px;
+  z-index: 100;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 .footer .footer__btn {
-  display: flex;
-  justify-content: space-around;
   width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 .footer .footer__btn button {
   background-color: #111111;
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50px;
-  transition: border background-color 0.4s;
-}
-.footer .footer__btn button i {
-  color: white;
   transition: 0.4s;
+}
+.footer .footer__btn button svg {
+  height: 1rem;
+  width: 1rem;
+  vertical-align: -0.125em;
+}
+.footer .footer__btn button svg path {
+  fill: white;
 }
 .footer .footer__btn button:hover, .footer .footer__btn button:focus {
   background-color: white;
   border: 1px solid #111111;
 }
-.footer .footer__btn button:hover i, .footer .footer__btn button:focus i {
-  color: #111111;
+.footer .footer__btn button:hover svg path, .footer .footer__btn button:focus svg path {
+  fill: #111111;
 }
 
 /*# sourceMappingURL=main.css.map */
