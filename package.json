@@ -3,7 +3,10 @@
     "sass": "^1.80.7"
   },
   "scripts": {
-    "build": "sass style/scss/main.scss ./style/css/main.css --style compressed",  
-    "watch": "sass --watch style/scss/main.scss ./style/css/main.css"
+    "build": "sass ./dist/style/scss/main.scss ./dist/style/css/main.css --style compressed",
+    "watch": "sass --watch ./dist/style/scss/main.scss ./dist/style/css/main.css"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
   }
 }
