@@ -4,6 +4,11 @@
 $font: "poppins", sans-serif;
 
 // Font size
+$fonte-size-xl: 3.75rem;
+$fonte-size-l: 2rem; //
+$fonte-size-m: 1.25rem;
+$fonte-size-b: 1rem;
+$fonte-size-s: 0.75rem;
 
 // Font wheight
 $normal: normal;
@@ -13,6 +18,23 @@ $bold: bold;
 $gray: #686d76;
 $black: #111111;
 $orange: #ff8000;
+
+// Padding
+$padding-2xs: 0.5rem;
+$padding-xs: 0.875rem;
+$padding-s: 1rem;
+$padding-m: 1.5rem;
+$padding-l: 2rem;
+$padding-xl: 3rem;
+$padding-2xl: 4rem;
+
+// Gap
+$gap-xs: 0.5rem;
+$gap-s: 1rem;
+$gap-m: 1.5rem;
+$gap-l: 2rem;
+$gap-xl: 3rem;
+$gap-2xl: 4rem;
 
 // mixin
 // Display flex
@@ -44,4 +66,18 @@ $orange: #ff8000;
       }
     }
   }
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == medium {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  // Vou verificar se é preciso
+  // @if $breakpoint == large {
+  //   @media (max-width: 1024px) {
+  //     @content;
+  //   }
+  // }
 }

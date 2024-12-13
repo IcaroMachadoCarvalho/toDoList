@@ -1,44 +1,84 @@
 @import "_variables.scss";
 @import "_reset.scss";
 
+:root {
+  font-size: 16px;
+}
+
 body {
   font-family: $font;
+
+  @include responsive(medium) {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 100px calc(100vh - 100px);
+    grid-template-areas:
+      "h m"
+      "f m"
+      "f m";
+  }
 }
 
 .header {
   width: 100%;
   height: 92px;
-  border: 3px solid $gray;
+  border: 1px solid $gray;
   border-bottom-right-radius: 60px;
   border-bottom-left-radius: 60px;
 
   h1 {
     text-align: center;
-    padding: 15px;
+    padding: $padding-s;
     font-size: 2.4rem;
     font-weight: $normal;
+
+    @include responsive(medium) {
+      font-size: $fonte-size-b;
+      font-weight: $bold;
+    }
+  }
+
+  @include responsive(medium) {
+    grid-area: h;
+    border: none;
+    height: 100%;
+    border-radius: 0px;
+    border-right: 1px solid $gray;
   }
 }
 
 main {
-  padding: 1rem 1.5rem 0rem 1.5rem;
+  padding: $padding-s $padding-m 0rem $padding-m;
+
+  @include responsive(medium) {
+    grid-area: m;
+    min-width: 700px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: $padding-m;
+  }
 
   .search {
     width: 100%;
     height: 3rem;
     margin-bottom: 0.5rem;
     border-radius: 16px;
+
+    @include responsive(medium) {
+      margin-bottom: 1rem;
+    }
     .searchBar {
       width: 100%;
       height: 100%;
-      border: 2px solid $gray;
-      padding: 1rem;
+      border: 1px solid $gray;
+      padding: $padding-s;
       border-radius: 28px;
 
       @include flex(row, start, center);
       form {
         width: 100%;
-        gap: 10px;
+        gap: $gap-xs;
         @include flex(row, center, space-between);
         svg {
           height: 1.5rem;
@@ -69,12 +109,23 @@ main {
     width: 100%;
     height: auto;
     @include flex(column, space-between, center);
-    gap: 0.8rem;
+    gap: $gap-s;
+
+    @include responsive(medium) {
+      height: 86%;
+      gap: $gap-xs;
+      justify-content: start;
+      position: relative;
+    }
 
     &__title {
       align-self: start;
-      font-size: 1.6rem;
+      font-size: $fonte-size-m;
       font-weight: normal;
+
+      @include responsive(medium){
+        font-size: $fonte-size-l;
+      }
     }
 
     .blocks {
@@ -83,19 +134,24 @@ main {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
-      grid-gap: 1rem;
+      align-items: center;
+      grid-gap: $gap-s;
       overflow-y: scroll;
       scroll-behavior: smooth;
 
+      @include responsive(medium){
+        height: 78%;
+      }
+
       &__item {
         background-color: $orange;
-        height: 150px;
+        height: 100%;
         @include flex(column, space-around, start);
         border: none;
         border-radius: 30px;
         p {
           width: 100%;
-          padding: 0.5rem 1.2rem;
+          padding: $padding-2xs $padding-s;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -123,8 +179,15 @@ main {
     }
 
     .pagination {
-      @include flex(row, center, space-around);
+      @include flex(row, center,none);
       width: 60%;
+
+      @include responsive(medium) {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+      }
+
       span {
         text-align: center;
         padding: 0.4rem 0rem;
@@ -154,15 +217,31 @@ main {
   height: 92px;
   position: fixed;
   bottom: 0;
-  border: 3px solid $gray;
+  border: 1px solid $gray;
   border-top-right-radius: 60px;
   border-top-left-radius: 60px;
   z-index: 100;
   @include flex(row, center, center);
 
+  @include responsive(medium) {
+    grid-area: f;
+    position: relative;
+    height: 100%;
+    align-items: flex-start;
+    border: none;
+    border-radius: 0px;
+    border-right: 1px solid $gray;
+  }
+
   .footer__btn {
     width: 80%;
     @include flex(row, space-around, center);
+
+    @include responsive(medium) {
+      flex-direction: column;
+      width: auto;
+      gap: $gap-s;
+    }
 
     button {
       background-color: $black;
@@ -172,6 +251,11 @@ main {
       transition: 0.4s;
 
       @include svgIcon;
+
+      @include responsive(medium) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
     }
   }
 }
