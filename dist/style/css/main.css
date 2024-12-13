@@ -44,26 +44,63 @@ body {
   scroll-behavior: smooth;
 }
 
+:root {
+  font-size: 16px;
+}
+
 body {
   font-family: "poppins", sans-serif;
+}
+@media (min-width: 768px) {
+  body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 100px calc(100vh - 100px);
+    grid-template-areas: "h m" "f m" "f m";
+  }
 }
 
 .header {
   width: 100%;
   height: 92px;
-  border: 3px solid #686d76;
+  border: 1px solid #686d76;
   border-bottom-right-radius: 60px;
   border-bottom-left-radius: 60px;
 }
 .header h1 {
   text-align: center;
-  padding: 15px;
+  padding: 1rem;
   font-size: 2.4rem;
   font-weight: normal;
+}
+@media (min-width: 768px) {
+  .header h1 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+@media (min-width: 768px) {
+  .header {
+    grid-area: h;
+    border: none;
+    height: 100%;
+    border-radius: 0px;
+    border-right: 1px solid #686d76;
+  }
 }
 
 main {
   padding: 1rem 1.5rem 0rem 1.5rem;
+}
+@media (min-width: 768px) {
+  main {
+    grid-area: m;
+    min-width: 700px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
 }
 main .search {
   width: 100%;
@@ -71,10 +108,15 @@ main .search {
   margin-bottom: 0.5rem;
   border-radius: 16px;
 }
+@media (min-width: 768px) {
+  main .search {
+    margin-bottom: 1rem;
+  }
+}
 main .search .searchBar {
   width: 100%;
   height: 100%;
-  border: 2px solid #686d76;
+  border: 1px solid #686d76;
   padding: 1rem;
   border-radius: 28px;
   display: flex;
@@ -84,7 +126,7 @@ main .search .searchBar {
 }
 main .search .searchBar form {
   width: 100%;
-  gap: 10px;
+  gap: 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -112,12 +154,25 @@ main .blockList {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  main .blockList {
+    height: 86%;
+    gap: 0.5rem;
+    justify-content: start;
+    position: relative;
+  }
 }
 main .blockList__title {
   align-self: start;
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   font-weight: normal;
+}
+@media (min-width: 768px) {
+  main .blockList__title {
+    font-size: 2rem;
+  }
 }
 main .blockList .blocks {
   width: 100%;
@@ -125,13 +180,19 @@ main .blockList .blocks {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: center;
   grid-gap: 1rem;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
+@media (min-width: 768px) {
+  main .blockList .blocks {
+    height: 78%;
+  }
+}
 main .blockList .blocks__item {
   background-color: #ff8000;
-  height: 150px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -141,7 +202,7 @@ main .blockList .blocks__item {
 }
 main .blockList .blocks__item p {
   width: 100%;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -183,8 +244,15 @@ main .blockList .pagination {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: space-around;
+  align-items: none;
   width: 60%;
+}
+@media (min-width: 768px) {
+  main .blockList .pagination {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+  }
 }
 main .blockList .pagination span {
   text-align: center;
@@ -225,7 +293,7 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   height: 92px;
   position: fixed;
   bottom: 0;
-  border: 3px solid #686d76;
+  border: 1px solid #686d76;
   border-top-right-radius: 60px;
   border-top-left-radius: 60px;
   z-index: 100;
@@ -234,12 +302,30 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   justify-content: center;
   align-items: center;
 }
+@media (min-width: 768px) {
+  .footer {
+    grid-area: f;
+    position: relative;
+    height: 100%;
+    align-items: flex-start;
+    border: none;
+    border-radius: 0px;
+    border-right: 1px solid #686d76;
+  }
+}
 .footer .footer__btn {
   width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+@media (min-width: 768px) {
+  .footer .footer__btn {
+    flex-direction: column;
+    width: auto;
+    gap: 1rem;
+  }
 }
 .footer .footer__btn button {
   background-color: #111111;
@@ -262,6 +348,12 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
 }
 .footer .footer__btn button:hover svg path, .footer .footer__btn button:focus svg path {
   fill: #111111;
+}
+@media (min-width: 768px) {
+  .footer .footer__btn button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
