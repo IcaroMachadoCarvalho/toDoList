@@ -132,7 +132,7 @@ main {
       width: 100%;
       height: 150px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
       align-items: center;
       grid-gap: $gap-s;
@@ -146,7 +146,7 @@ main {
       &__item {
         background-color: $orange;
         height: 100%;
-        @include flex(column, space-around, start);
+        @include flex(column, space-between, start);
         border: none;
         border-radius: 30px;
         p {
