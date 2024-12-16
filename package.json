@@ -1,12 +1,15 @@
 {
   "dependencies": {
-    "sass": "^1.80.7"
+    "sass": "^1.80.7",
+    "webpack-cli": "^5.1.4"
   },
   "scripts": {
+    "dev": "webpack --mode development -w",
     "build": "sass ./dist/style/scss/main.scss ./dist/style/css/main.css --style compressed",
     "watch": "sass --watch ./dist/style/scss/main.scss ./dist/style/css/main.css"
   },
   "devDependencies": {
+    "ts-loader": "^9.5.1",
     "typescript": "^5.7.2"
   }
 }
