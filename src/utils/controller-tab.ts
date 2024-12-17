@@ -1,3 +1,5 @@
+import { hideContent } from "./manage-content-tab";
+
 const tab: HTMLElement | null = document.querySelector(".footer");
 const header: HTMLElement | null = document.querySelector(".header")
 let isOpen:boolean;
@@ -40,6 +42,7 @@ function alternateClassOpen(option:string):void{
 }
 
 export function closeTab():void{
+    hideContent();
     alternateClassOpen("add");
     toggleTab();
 }
