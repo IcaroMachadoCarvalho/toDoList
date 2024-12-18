@@ -225,16 +225,17 @@ main {
   border-top-left-radius: 60px;
   z-index: 100;
   transition: 0.4s linear;
-  @include flex(row, center, center);
+  @include flex(column, space-around, center);
 
   @include responsive(medium) {
     grid-area: f;
     position: relative;
     height: 100%;
-    align-items: flex-start;
+    justify-content: flex-start;
     border: none;
     border-radius: 0px;
     border-right: 1px solid $gray;
+    // flex-direction: row;
   }
 
   .footer__btn {

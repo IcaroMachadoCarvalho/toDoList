@@ -302,8 +302,8 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   z-index: 100;
   transition: 0.4s linear;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 @media (min-width: 768px) {
@@ -311,7 +311,7 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
     grid-area: f;
     position: relative;
     height: 100%;
-    align-items: flex-start;
+    justify-content: flex-start;
     border: none;
     border-radius: 0px;
     border-right: 1px solid #686d76;

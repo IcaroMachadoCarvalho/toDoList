@@ -8,23 +8,23 @@ export function showContent(typeContent:string): void{
 
     let divContainerContent: HTMLElement = document.createElement("div");
     divContainerContent.classList.add("content__tab");
-    hideContent();
+    hideContent(); // não duplica
 
     if(typeContent === "filter"){
         divContainerContent.innerHTML = `
-        <h1> hello</h1>`;
+        <h1> hello 1</h1>`;
         tab.appendChild(divContainerContent);
     }
     
     if(typeContent === "create"){
         divContainerContent.innerHTML = `
-        <h1> hello</h1>`;
+        <h1> hello 2</h1>`;
         tab.appendChild(divContainerContent);
     }
     
     if(typeContent === "color"){
         divContainerContent.innerHTML = `
-        <h1> hello</h1>`;
+        <h1> hello 3</h1>`;
         tab.appendChild(divContainerContent);
     }
 }
@@ -34,12 +34,12 @@ export function hideContent():void{
         throw new Error("O elemento footer não foi renderizado tente recarregar a página");
     }
     let targetContent = tab.querySelectorAll(".content__tab");
-    targetContent.forEach((content) => content.remove());  
-    // if (targetContent) {
-    //     targetContent.remove();
-    // } 
-    // else {
-    //     console.error("Não há conteúdo para remover.");
-    // }
+    if (targetContent) {
+        targetContent.forEach((content) => content.remove());  
+        // targetContent.remove();
+    } 
+    else {
+        console.error("Não há conteúdo para remover.");
+    }
 
 }
