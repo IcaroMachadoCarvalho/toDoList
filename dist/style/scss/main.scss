@@ -126,7 +126,7 @@ main {
       font-size: $fonte-size-m;
       font-weight: normal;
 
-      @include responsive(medium){
+      @include responsive(medium) {
         font-size: $fonte-size-l;
       }
     }
@@ -142,7 +142,7 @@ main {
       overflow-y: scroll;
       scroll-behavior: smooth;
 
-      @include responsive(medium){
+      @include responsive(medium) {
         height: 78%;
       }
 
@@ -182,12 +182,12 @@ main {
     }
 
     .pagination {
-      @include flex(row, center,none);
+      @include flex(row, center, none);
       width: 60%;
 
       @include responsive(medium) {
         position: absolute;
-        bottom: 0px;
+        bottom: -1rem;
         width: 100%;
       }
 
@@ -225,7 +225,7 @@ main {
   border-top-left-radius: 60px;
   z-index: 100;
   transition: 0.4s linear;
-  @include flex(column, space-around, center);
+  @include flex(column, start, center);
 
   @include responsive(medium) {
     grid-area: f;
@@ -241,6 +241,7 @@ main {
   .footer__btn {
     width: 80%;
     @include flex(row, space-around, center);
+    margin: 1.5rem;
 
     @include responsive(medium) {
       flex-direction: column;
@@ -262,5 +263,19 @@ main {
         height: 2.5rem;
       }
     }
+  }
+}
+
+// conteúdo do footer quando selecionado o colorTask
+.colorPicker {
+  width: 100%;
+  text-align: center;
+  gap: $gap-s;
+  @include flex(column, center, center);
+
+  &__display {
+    height: 40px;
+    width: 40px;
+    border-radius: 13px;
   }
 }

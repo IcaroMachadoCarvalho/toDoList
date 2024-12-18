@@ -19,7 +19,7 @@ if (btnFilter) {
 if (btnCreate) {
   btnCreate.addEventListener("click", () => {
     toggleTab();
-    // cria quando está aberto
+    // cria somente quando está aberto
     if (document.querySelector(".footer")?.classList.contains("open")) {
       showContent("create");
     }
@@ -42,11 +42,16 @@ if (btnColor) {
 window.addEventListener("resize", () => {
   closeTab();
 
+  let tab: HTMLElement | null = document.querySelector(".footer");
+  let tabOptions: HTMLElement | null = document.querySelector(".footer__btn");
   if (window.innerWidth >= 768) {
-    let tab: HTMLElement | null = document.querySelector(".footer");
     if (tab !== null) {
       tab.style.width = "100%";
       tab.style.height = "100%";
+    }
+  }else{
+    if(tabOptions){
+      tabOptions.style.flexDirection = "row";
     }
   }
 });

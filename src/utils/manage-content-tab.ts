@@ -8,7 +8,7 @@ export function showContent(typeContent:string): void{
 
     let divContainerContent: HTMLElement = document.createElement("div");
     divContainerContent.classList.add("content__tab");
-    hideContent(); // não duplica
+    hideContent(); // não duplica pois apaga o anterior
 
     if(typeContent === "filter"){
         divContainerContent.innerHTML = `
@@ -24,7 +24,24 @@ export function showContent(typeContent:string): void{
     
     if(typeContent === "color"){
         divContainerContent.innerHTML = `
-        <h1> hello 3</h1>`;
+        <div class="colorPicker">
+            <h2>Escolha a cor do bloco</h3>
+            <input type="color" class="colorPicker__display">
+            <span data-color="color"></span>
+        </div>`;
+
+        const colorPicker = divContainerContent.firstElementChild?.querySelector("input[type=color]") as HTMLInputElement;
+        const colorSpan = colorPicker.nextSibling as HTMLSpanElement;
+        const btnColor = document.querySelector("#colorTask") as HTMLElement;
+        if(!colorPicker && !colorSpan && !document.querySelector("#colorTask")){
+            throw new Error("O elemento colorPicker__display, colorSpan e btnColor não foi renderizado tente recarregar a página")
+        }
+
+        colorPicker.addEventListener("change", () => {
+                console.log(colorPicker.value);
+                colorSpan.textContent = colorPicker.value;
+                btnColor.style.backgroundColor = colorPicker.value;
+            });
         tab.appendChild(divContainerContent);
     }
 }
@@ -36,10 +53,9 @@ export function hideContent():void{
     let targetContent = tab.querySelectorAll(".content__tab");
     if (targetContent) {
         targetContent.forEach((content) => content.remove());  
-        // targetContent.remove();
     } 
     else {
         console.error("Não há conteúdo para remover.");
     }
-
 }
+

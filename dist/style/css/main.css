@@ -253,7 +253,7 @@ main .blockList .pagination {
 @media (min-width: 768px) {
   main .blockList .pagination {
     position: absolute;
-    bottom: 0px;
+    bottom: -1rem;
     width: 100%;
   }
 }
@@ -303,7 +303,7 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   transition: 0.4s linear;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: start;
   align-items: center;
 }
 @media (min-width: 768px) {
@@ -323,6 +323,7 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin: 1.5rem;
 }
 @media (min-width: 768px) {
   .footer .footer__btn {
@@ -358,6 +359,21 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
     width: 2.5rem;
     height: 2.5rem;
   }
+}
+
+.colorPicker {
+  width: 100%;
+  text-align: center;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.colorPicker__display {
+  height: 40px;
+  width: 40px;
+  border-radius: 13px;
 }
 
 /*# sourceMappingURL=main.css.map */
