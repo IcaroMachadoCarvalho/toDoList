@@ -56,7 +56,7 @@ body {
     height: 100vh;
     display: grid;
     grid-template-columns: 100px 1fr;
-    grid-template-rows: 100px calc(100vh - 100px);
+    grid-template-rows: 72px calc(100vh - 72px);
     grid-template-areas: "h m" "f m" "f m";
   }
 }
@@ -374,6 +374,96 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   height: 40px;
   width: 40px;
   border-radius: 13px;
+}
+
+.createSection__title, .createSection__task {
+  width: 100%;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid black;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.createSection__title input, .createSection__task input {
+  text-indent: 0.6rem;
+  outline: none;
+}
+.createSection__title span, .createSection__task span {
+  background-color: #ff8000;
+  height: 100%;
+  width: 50px;
+  border-radius: 70px;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.createSection__title span svg, .createSection__task span svg {
+  width: 1rem;
+  height: 1rem;
+}
+.createSection__title span:hover, .createSection__task span:hover, .createSection__title span:focus, .createSection__task span:focus {
+  cursor: pointer;
+  background-color: white;
+  border-left: 1px solid black;
+}
+.createSection__button {
+  background-color: #ff8000;
+  width: 40px;
+  height: 2.5rem;
+  margin: 0 auto;
+  border-radius: 50px;
+  border: 1px solid black;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.createSection__button:hover, .createSection__button:focus {
+  cursor: pointer;
+  background-color: white;
+}
+.createSection__button svg {
+  width: 1rem;
+  height: 1rem;
+}
+.createSection__error {
+  text-align: center;
+  color: red;
+  font-size: 1.25rem;
+  margin: 1rem;
+}
+.createSection__listTitle {
+  text-align: center;
+  font-size: 1.25rem;
+}
+.createSection__list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.createSection__list li {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.createSection__list li svg {
+  width: 1rem;
+  height: 1rem;
+  transition: 0.4s;
+}
+.createSection__list li svg:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 /*# sourceMappingURL=main.css.map */
