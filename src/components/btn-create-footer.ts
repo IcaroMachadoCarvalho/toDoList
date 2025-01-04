@@ -1,6 +1,7 @@
 import { Tarefa } from "../types/Tarefa";
 import { Categoria, categoriaSelect } from "../types/Categorias";
 
+// Salva a estrutura html da seção
 const createSection: string = `
         <div class="createSection">
         <div class="createSection__category">
@@ -29,6 +30,7 @@ const createSection: string = `
             <ul class="createSection__list" data-create-list></ul>
         </div>`;
 
+// Retorna a estrutura quando chamado em outra parte de onde for chamado
 export const createSectionContent = (): string => {
   return createSection;
 };
@@ -109,6 +111,8 @@ export const addListenerSectionContent = (tab: HTMLElement): void => {
   }
 };
 
+// Funções internas
+
 function deleteTask(item: HTMLElement): void {
   if (item) {
     item.remove();
@@ -127,12 +131,13 @@ function verifyNewTask(value: string): boolean {
   return false;
 }
 
+// Recebe valores dos inputs do createSection, pega o tamanho da array com os valores do localStorage e retorna
+// moldado
 function formatTask(
   category: Categoria,
   title: string,
   tasks: string[]
 ): Tarefa {
-  // verificar id qual a ser usado
   const tasksJson = localStorage.getItem("tasks");
   const tasksArray: Tarefa[] = tasksJson ? JSON.parse(tasksJson) : [];
 
@@ -201,10 +206,10 @@ function saveNewTask(t: HTMLElement): void {
   if (titleBlock instanceof HTMLElement && titleBlock.textContent?.trim()) {
     if (selectGategory instanceof HTMLSelectElement) {
       let categoria: Categoria = selectGategory.value as Categoria;
-
       const savedTasks: Tarefa[] = JSON.parse(
         localStorage.getItem("tasks") || "[]"
       );
+      // Salva no localStorage
       if (savedTasks) {
         savedTasks.push(
           formatTask(categoria, titleBlock.textContent.trim(), tasksText)
@@ -218,6 +223,7 @@ function saveNewTask(t: HTMLElement): void {
     titleBlock.textContent = "";
   }
 
+  // Limpa as taks listadas na seção
   const ul = t.querySelector("[data-create-list]");
 
   if (ul instanceof HTMLElement) {
@@ -226,4 +232,15 @@ function saveNewTask(t: HTMLElement): void {
       ul.removeChild(ul.firstChild);
     }
   }
+}
+// Antes consertar o achatamento nos blockslist
+// Ver que informações mostrar no bloco antes de clicar
+/*
+  Selecionar blocklist blocks
+  Criar elemento  
+  Pegar a cor selecionada do color tasks talvez usar fun get color sabe
+  Pegar os valores mais importantes
+*/
+function createBlock():void{
+
 }

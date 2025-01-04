@@ -1,0 +1,31 @@
+.header {
+    background-color: white;
+    width: 100%;
+    height: 92px;
+    border: 1px solid $gray;
+    border-bottom-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    transition: 0.4s linear;
+    z-index: 100;
+  
+    h1 {
+      text-align: center;
+      padding: $padding-s;
+      font-size: 2.4rem;
+      font-weight: $normal;
+  
+      @include responsive(medium) {
+        font-size: $fonte-size-b;
+        font-weight: $bold;
+      }
+    }
+  
+    @include responsive(medium) {
+      grid-area: h;
+      border: none;
+      height: 100%;
+      border-radius: 0px;
+      border-right: 1px solid $gray;
+    }
+  }
+  
