@@ -1,0 +1,51 @@
+.footer {
+    background-color: white;
+    width: 100%;
+    height: 92px;
+    position: fixed;
+    bottom: 0;
+    border: 1px solid $gray;
+    border-top-right-radius: 60px;
+    border-top-left-radius: 60px;
+    z-index: 100;
+    transition: 0.4s linear;
+    @include flex(column, start, center);
+  
+    @include responsive(medium) {
+      grid-area: f;
+      position: relative;
+      height: 100%;
+      justify-content: flex-start;
+      border: none;
+      border-radius: 0px;
+      border-right: 1px solid $gray;
+      // flex-direction: row;
+    }
+  
+    .footer__btn {
+      width: 80%;
+      @include flex(row, space-around, center);
+      margin: 1.5rem;
+  
+      @include responsive(medium) {
+        flex-direction: column;
+        width: auto;
+        gap: $gap-s;
+      }
+  
+      button {
+        background-color: $black;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50px;
+        transition: 0.4s;
+  
+        @include svgIcon;
+  
+        @include responsive(medium) {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+    }
+  }

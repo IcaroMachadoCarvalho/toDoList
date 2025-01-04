@@ -45,23 +45,6 @@ body {
   scroll-behavior: smooth;
 }
 
-:root {
-  font-size: 16px;
-}
-
-body {
-  font-family: "poppins", sans-serif;
-}
-@media (min-width: 768px) {
-  body {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    grid-template-rows: 72px calc(100vh - 72px);
-    grid-template-areas: "h m" "f m" "f m";
-  }
-}
-
 .header {
   background-color: white;
   width: 100%;
@@ -362,21 +345,6 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   }
 }
 
-.colorPicker {
-  width: 100%;
-  text-align: center;
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.colorPicker__display {
-  height: 40px;
-  width: 40px;
-  border-radius: 13px;
-}
-
 .createSection {
   font-size: 1rem;
 }
@@ -499,6 +467,38 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
 .createSection__list li svg:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.colorPicker {
+  width: 100%;
+  text-align: center;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.colorPicker__display {
+  height: 40px;
+  width: 40px;
+  border-radius: 13px;
+}
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  font-family: "poppins", sans-serif;
+}
+@media (min-width: 768px) {
+  body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 72px calc(100vh - 72px);
+    grid-template-areas: "h m" "f m" "f m";
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
