@@ -148,9 +148,11 @@ function formatTask(
   }
 
   const id = tasksArray.length + 1;
+  const colorTask = getColor();
 
   const block: Tarefa = {
     id: id,
+    color: colorTask,
     category: category,
     title: title,
     task: tasks,

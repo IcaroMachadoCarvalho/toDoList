@@ -1,4 +1,4 @@
-const newBlockStructure = (id:number,title: string, category: string): string => {
+export const newBlockStructure = (id:number,title: string, category: string): string => {
   return `
         <p>${title}</p>
         <p class="item__category">${category}</p>
@@ -16,7 +16,7 @@ export function createBlock(id:number,titleItem: string, categoryItem: string,co
   const newBlock: HTMLDivElement = document.createElement("div");
   newBlock.classList.add("blocks__item");
   newBlock.innerHTML = newBlockStructure(id,titleItem, categoryItem);
-  newBlock.style.backgroundColor = `${color}`;
+  newBlock.style.backgroundColor = `${color}`
   newBlock.querySelector(".item__edit")?.addEventListener("click", () => {
     // Abre mostrar mais
     console.log(1);
