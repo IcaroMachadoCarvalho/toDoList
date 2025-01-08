@@ -22,9 +22,21 @@ export function addListenerColorContent(tab: HTMLElement, divSection:HTMLElement
       }
     
       colorPicker.addEventListener("change", () => {
-        console.log(colorPicker.value);
+        // console.log(colorPicker.value);
         colorSpan.textContent = colorPicker.value;
         btnColor.style.backgroundColor = colorPicker.value;
+        btnColor.setAttribute("data-color-task",colorPicker.value)
       });
       tab.appendChild(divSection);
+}
+
+export const getColor = (): string => {
+  const chosenColor = document.querySelector("#colorTask");
+  if (chosenColor instanceof HTMLElement) {
+    const color = chosenColor.getAttribute("data-color-task");
+    if (color) {
+      return color; 
+    }
+  }
+  return "#ff8000"; 
 }

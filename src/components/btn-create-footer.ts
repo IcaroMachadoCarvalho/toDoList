@@ -1,5 +1,7 @@
 import { Tarefa } from "../types/Tarefa";
 import { Categoria, categoriaSelect } from "../types/Categorias";
+import { createBlock } from "../utils/newBlock";
+import { getColor } from "./btn-color-footer";
 
 // Salva a estrutura html da seção
 const createSection: string = `
@@ -106,13 +108,13 @@ export const addListenerSectionContent = (tab: HTMLElement): void => {
 
   if (btnSaveBlock) {
     btnSaveBlock.addEventListener("click", () => {
-      console.log(saveNewTask(tab));
+      // console.log(saveNewTask(tab));
+      saveNewTask(tab);
     });
   }
 };
 
 // Funções internas
-
 function deleteTask(item: HTMLElement): void {
   if (item) {
     item.remove();
@@ -216,6 +218,10 @@ function saveNewTask(t: HTMLElement): void {
         );
         localStorage.setItem("tasks", JSON.stringify(savedTasks));
       }
+      // Chama a função para criar bloco e enviar as informações necessárias
+      const id:number = savedTasks.length;
+      const color:string = getColor();
+      createBlock(id,titleBlock.textContent.trim(), categoria,color);
     }
   }
 
@@ -232,15 +238,4 @@ function saveNewTask(t: HTMLElement): void {
       ul.removeChild(ul.firstChild);
     }
   }
-}
-// Antes consertar o achatamento nos blockslist
-// Ver que informações mostrar no bloco antes de clicar
-/*
-  Selecionar blocklist blocks
-  Criar elemento  
-  Pegar a cor selecionada do color tasks talvez usar fun get color sabe
-  Pegar os valores mais importantes
-*/
-function createBlock():void{
-
 }
