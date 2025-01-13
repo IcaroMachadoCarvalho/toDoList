@@ -108,7 +108,6 @@ export const addListenerSectionContent = (tab: HTMLElement): void => {
 
   if (btnSaveBlock) {
     btnSaveBlock.addEventListener("click", () => {
-      // console.log(saveNewTask(tab));
       saveNewTask(tab);
     });
   }
@@ -155,7 +154,7 @@ function formatTask(
     color: colorTask,
     category: category,
     title: title,
-    task: tasks,
+    task: tasks.map(task => ({ item: task, status: false })),
     date: new Date().toLocaleDateString("pt-BR"),
   };
   return block;

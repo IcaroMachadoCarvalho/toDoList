@@ -1,5 +1,5 @@
-import "./components/btn-footer-component";
+import "./components/btn-footer-component"; 
 import "./utils/controller-tab";
-import { addLoadEventListener } from "./utils/onPageLoad";
+import {addLoadEventListener} from "./utils/onPageLoad";
 
 addLoadEventListener();

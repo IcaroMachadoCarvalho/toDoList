@@ -21,8 +21,16 @@ export enum Categoria {
     Recados = "Recados"
 }
 
+// Usado para mostrar as categorias no createSection
 export const categoriaSelect = (): string[] => {
     return Object.values(Categoria).map(categoria => {
         return `<option value="${categoria}">${categoria}</option>`;
     });
 }
+// Usado para mostrar a categoria selecionada no modal
+export const categoriaSelected = (selectedCategory: Categoria): string[] => {
+    return Object.values(Categoria).map(categoria => {
+        return `<option value="${categoria}" ${categoria === selectedCategory ? 'selected' : ''}>${categoria}</option>`;
+    });
+}
+

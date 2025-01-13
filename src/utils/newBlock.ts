@@ -1,4 +1,11 @@
-export const newBlockStructure = (id:number,title: string, category: string): string => {
+import { openModal } from "../components/more-details-item";
+import { Tarefa } from "../types/Tarefa";
+
+export const newBlockStructure = (
+  id: number,
+  title: string,
+  category: string
+): string => {
   return `
         <p>${title}</p>
         <p class="item__category">${category}</p>
@@ -11,15 +18,32 @@ export const newBlockStructure = (id:number,title: string, category: string): st
                 </div>`;
 };
 
-export function createBlock(id:number,titleItem: string, categoryItem: string,color:string): void {
+export function createBlock(
+  id: number,
+  titleItem: string,
+  categoryItem: string,
+  color: string
+): void {
   const blockList: HTMLDivElement = document.querySelector(".blocks")!;
   const newBlock: HTMLDivElement = document.createElement("div");
   newBlock.classList.add("blocks__item");
-  newBlock.innerHTML = newBlockStructure(id,titleItem, categoryItem);
-  newBlock.style.backgroundColor = `${color}`
+  newBlock.innerHTML = newBlockStructure(id, titleItem, categoryItem);
+  newBlock.style.backgroundColor = `${color}`;
+
+  // Adiciona um event listener para abrir o modal pelo editar do bloco
   newBlock.querySelector(".item__edit")?.addEventListener("click", () => {
-    // Abre mostrar mais
-    console.log(1);
+
+    // Lê o localStorage e manda o objeto para o modal
+    // mas não foi 
+    const arrayBlocks = localStorage.getItem("tasks");
+    if (arrayBlocks && arrayBlocks.length > 0) {
+      let block: Tarefa[] = JSON.parse(arrayBlocks);
+      block = block.filter((t: Tarefa) => {
+        return t.id === id;
+      });
+      // Manda o array com objeto para o modal
+      openModal(block[0]);
+    }
   });
-  blockList.appendChild(newBlock);
+  blockList.insertBefore(newBlock, blockList.firstChild);
 }
