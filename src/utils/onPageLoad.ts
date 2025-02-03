@@ -30,7 +30,7 @@ function renderBlocks(arrayBlocks: Tarefa[]): void {
     blockElement.style.backgroundColor = block.color;
     blockElement.querySelector(".item__edit")?.addEventListener("click", () => {
       // Abre mostrar mais
-      openModal(block);
+      openModal(block.id);
     });
     blockList.insertBefore(blockElement, blockList.firstChild);
   });
