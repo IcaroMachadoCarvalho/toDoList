@@ -1,5 +1,7 @@
-import { openModal } from "../components/more-details-item";
+import { MoreDetailsComponent } from "../components/more-details-item";
 import { Tarefa } from "../types/Tarefa";
+
+const moreDetails: MoreDetailsComponent  = new MoreDetailsComponent(); // Instância da classe MoreDetailsComponent 
 
 export const newBlockStructure = (
   id: number,
@@ -42,7 +44,7 @@ export function createBlock(
         return t.id === id;
       });
       // Manda o array com objeto para o modal
-      openModal(block[0].id);
+      moreDetails.openModal(block[0].id);
     }
   });
   blockList.insertBefore(newBlock, blockList.firstChild);

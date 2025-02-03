@@ -1,37 +1,49 @@
 import { Tarefa } from "../types/Tarefa";
 import { newBlockStructure } from "./newBlock";
-import { moreDetailsItem, openModal } from "../components/more-details-item";
+import { ServiceLocaltorage } from "./service-localstorage";
+import { MoreDetailsComponent } from "../components/more-details-item"; // Importando a classe
 
-export const addLoadEventListener = (): void => {
-  window.addEventListener("load", () => {
-    onPageLoad();
-    moreDetailsItem();
-  });
-};
+export class PageLoadComponent {
+  serviceStorage = new ServiceLocaltorage();
+  moreDetails: MoreDetailsComponent; // Instância da classe MoreDetailsComponent
 
-export const onPageLoad = (): void => {
-  const blockData = localStorage.getItem("tasks");
-  if (blockData) {
-    const arrayBlocks: Tarefa[] = JSON.parse(blockData);
-    renderBlocks(arrayBlocks);
+  constructor() {
+    this.moreDetails = new MoreDetailsComponent(); // Criando a instância
   }
-};
 
-function renderBlocks(arrayBlocks: Tarefa[]): void {
-  const blockList: HTMLDivElement = document.querySelector(".blocks")!;
-  arrayBlocks.forEach((block) => {
-    const blockElement = document.createElement("div");
-    blockElement.classList.add("blocks__item");
-    blockElement.innerHTML = newBlockStructure(
-      block.id,
-      block.title,
-      block.category
-    );
-    blockElement.style.backgroundColor = block.color;
-    blockElement.querySelector(".item__edit")?.addEventListener("click", () => {
-      // Abre mostrar mais
-      openModal(block.id);
+  addLoadEventListener() {
+    window.addEventListener("load", () => {
+      this.onPageLoad();
+      this.moreDetails.moreDetailsItem(); // Chama o método da instância
     });
-    blockList.insertBefore(blockElement, blockList.firstChild);
-  });
+  }
+
+  onPageLoad() {
+    const blockData = this.serviceStorage.getItems();
+    if (blockData) {
+      const arrayBlocks: Tarefa[] = JSON.parse(blockData);
+      this.renderBlocks(arrayBlocks);
+    }
+  }
+
+  renderBlocks(arrayBlocks: Tarefa[]) {
+    const blockList: HTMLDivElement = document.querySelector(".blocks")!;
+    arrayBlocks.forEach((block) => {
+      const blockElement = document.createElement("div");
+      blockElement.classList.add("blocks__item");
+      blockElement.innerHTML = newBlockStructure(
+        block.id,
+        block.title,
+        block.category
+      );
+      blockElement.style.backgroundColor = block.color;
+      blockElement
+        .querySelector(".item__edit")
+        ?.addEventListener("click", () => {
+          // Abre mostrar mais
+          this.moreDetails.openModal(block.id); // Chama o método da instância
+        });
+      blockList.insertBefore(blockElement, blockList.firstChild);
+    });
+  }
 }
