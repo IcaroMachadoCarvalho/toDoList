@@ -1,4 +1,7 @@
 import "./components/btn-footer-component"; 
-import {addLoadEventListener} from "./utils/onPageLoad";
+import {PageLoadComponent} from "./utils/onPageLoad";
+import { MoreDetailsComponent } from "./components/more-details-item";
 
-addLoadEventListener();
+const pageLoad = new PageLoadComponent();
+const moreDeatails = new MoreDetailsComponent();
+pageLoad.addLoadEventListener();

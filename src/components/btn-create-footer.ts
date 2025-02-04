@@ -2,6 +2,8 @@ import { Tarefa } from "../types/Tarefa";
 import { Categoria, categoriaSelect } from "../types/Categorias";
 import { createBlock } from "../utils/newBlock";
 import { BtnColorComponent } from "./btn-color-footer";
+import {ServiceLocaltorage} from "../utils/service-localstorage"
+
 
 export class BtnCreateFooter {
   template: string = `
@@ -32,6 +34,8 @@ export class BtnCreateFooter {
             <ul class="createSection__list" data-create-list></ul>
         </div>
   `;
+
+  serviceStorage = new ServiceLocaltorage();
 
   createSectionContent(): string {
     return this.template;
@@ -135,7 +139,7 @@ export class BtnCreateFooter {
   // Recebe valores dos inputs do createSection, pega o tamanho da array com os valores do localStorage e retorna
   // moldado
   formatTask(category: Categoria, title: string, tasks: string[]): Tarefa {
-    const tasksJson = localStorage.getItem("tasks");
+    const tasksJson = this.serviceStorage.getItems();
     const tasksArray: Tarefa[] = tasksJson ? JSON.parse(tasksJson) : [];
 
     if (!tasksArray) {
@@ -206,14 +210,14 @@ export class BtnCreateFooter {
       if (selectGategory instanceof HTMLSelectElement) {
         let categoria: Categoria = selectGategory.value as Categoria;
         const savedTasks: Tarefa[] = JSON.parse(
-          localStorage.getItem("tasks") || "[]"
+          this.serviceStorage.getItems() || "[]"
         );
         // Salva no localStorage
         if (savedTasks) {
           savedTasks.push(
             this.formatTask(categoria, titleBlock.textContent.trim(), tasksText)
           );
-          localStorage.setItem("tasks", JSON.stringify(savedTasks));
+          this.serviceStorage.setItems(savedTasks);
         }
         // Chama a função para criar bloco e enviar as informações necessárias
         const id: number = savedTasks.length;
@@ -236,4 +240,6 @@ export class BtnCreateFooter {
       }
     }
   }
+
+  
 }
