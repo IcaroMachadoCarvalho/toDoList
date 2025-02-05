@@ -1,7 +1,7 @@
 import { MoreDetailsComponent } from "../components/more-details-item";
 import { Tarefa } from "../types/Tarefa";
 
-const moreDetails: MoreDetailsComponent  = new MoreDetailsComponent(); // Instância da classe MoreDetailsComponent 
+const moreDetails: MoreDetailsComponent = new MoreDetailsComponent(); // Instância da classe MoreDetailsComponent
 
 export const newBlockStructure = (
   id: number,
@@ -35,17 +35,7 @@ export function createBlock(
 
   // Adiciona um event listener para abrir o modal pelo editar do bloco
   newBlock.querySelector(".item__edit")?.addEventListener("click", () => {
-
-    // Lê o localStorage e manda o objeto para o modal
-    const arrayBlocks = localStorage.getItem("tasks");
-    if (arrayBlocks && arrayBlocks.length > 0) {
-      let block: Tarefa[] = JSON.parse(arrayBlocks);
-      block = block.filter((t: Tarefa) => {
-        return t.id === id;
-      });
-      // Manda o array com objeto para o modal
-      moreDetails.openModal(block[0].id);
-    }
+    moreDetails.openModal(id);
   });
   blockList.insertBefore(newBlock, blockList.firstChild);
 }
