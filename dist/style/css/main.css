@@ -565,6 +565,7 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   outline: none;
 }
 .showMore__item select {
+  height: 30px;
   width: 100%;
   font-family: "poppins", sans-serif;
   font-size: 1rem;
