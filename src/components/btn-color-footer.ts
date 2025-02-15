@@ -18,8 +18,13 @@ export class BtnColorComponent {
       );
     }
 
+    if(btnColor.getAttribute("data-color-task") !== "#000000"){
+      console.log("A cor", btnColor.getAttribute("data-color-task"));
+      colorPicker.value = `${btnColor.getAttribute("data-color-task")}`;
+      colorSpan.textContent = colorPicker.value;
+    }
+
     colorPicker.addEventListener("change", () => {
-      // console.log(colorPicker.value);
       colorSpan.textContent = colorPicker.value;
       btnColor.style.backgroundColor = colorPicker.value;
       btnColor.setAttribute("data-color-task", colorPicker.value);
@@ -40,4 +45,13 @@ export class BtnColorComponent {
   colorSectionContent(): string {
     return this.template;
   }
+
+  // updateInput(){
+  //   const inputColor = document.querySelector(".colorPicker input");
+  //   if(!inputColor){
+  //     console.log("Não tem input color");
+  //     return;
+  //   }
+  //   if(this.getColor())
+  // }
 }

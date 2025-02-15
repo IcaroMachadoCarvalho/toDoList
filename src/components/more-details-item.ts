@@ -5,7 +5,7 @@ import { ServiceLocaltorage } from "../utils/service-localstorage";
 export class MoreDetailsComponent {
   serviceStorage = new ServiceLocaltorage();
   modal: HTMLElement;
-  blockCopy:Tarefa[];
+  blockCopy: Tarefa[];
 
   constructor() {
     this.modal = document.querySelector(".showMore") as HTMLElement;
@@ -24,23 +24,60 @@ export class MoreDetailsComponent {
   openModal(id: number) {
     this.modal.classList.add("open");
     document.body.classList.add("open");
-    console.log("Open modal", id);
-
     this.addStructureModal(id);
   }
 
   closeModal() {
     this.removeStructureModal();
-    // this.modal?.removeEventListener("submit", this.handleSubmit);
     this.modal?.classList.remove("open");
     document.body.classList.remove("open");
-    this.modal.removeEventListener("submit",this.handleSubmit);
+    this.modal.removeEventListener("submit", this.handleSubmit);
   }
+
+  verifyInputsForm(): boolean {
+  // Seleciona o modal ou o formulário específico onde os inputs de texto estão
+  const form = this.modal.querySelector("form.show-more__form-content");
+
+  if (!form) {
+    console.log("Formulário não encontrado dentro do modal.");
+    return false;
+  }
+
+  // Seleciona apenas os inputs de texto dentro deste formulário específico
+  const inputsTextTaksForm = Array.from(form.querySelectorAll("input[type='text']")) as Array<HTMLInputElement>;
+
+  if (inputsTextTaksForm.length > 0) {
+    const allFilled = inputsTextTaksForm.every((input) => {
+      const trimmedValue = input.value.trim();
+
+
+      // Verifica se o valor não é nulo, vazio ou só contém espaços
+      return (
+        trimmedValue !== ""
+      );
+    });
+
+    console.log("Todos os campos preenchidos?", allFilled);
+    return allFilled;
+  } else {
+    console.log("Nenhum campo de texto encontrado");
+    return false;
+  }
+}
+
+// Passa a cópia de `block` para evitar alterações no original
 
   handleSubmit = (e: Event) => {
     e.preventDefault();
-    this.checkForChanges(this.blockCopy[0]); // Passa a cópia de `block` para evitar alterações no original
-    this.closeModal();
+    const isFormComplete:boolean = this.verifyInputsForm();
+    const messageErrorForm:HTMLElement = document.querySelector(".error__form__submit") as  HTMLElement;
+    if (isFormComplete) {
+      this.checkForChanges(this.blockCopy[0]); 
+      messageErrorForm.textContent = "";
+      this.closeModal();
+      return;
+    }
+    messageErrorForm.textContent = "Preencha os campos da tarefa/as e da categoria do bloco";
   };
 
   // Funções internas
@@ -48,21 +85,21 @@ export class MoreDetailsComponent {
     const arrayBlocks: Tarefa[] = JSON.parse(
       this.serviceStorage.getItems() || "[]"
     );
-  
+
     // Usar 'find' ao invés de 'filter'
     const block: Tarefa | undefined = arrayBlocks.find(
       (t: Tarefa) => t.id === idBlock
     );
-  
+
     if (!block) {
       console.log("Tarefa não encontrada");
       return; // Sai da função caso a tarefa não seja encontrada
     }
-  
+
     this.blockCopy = [block]; // Agora você tem um array com a tarefa
-  
+
     console.log("block item original", this.blockCopy[0]);
-  
+
     const structure = `
         <div class="showMore__close" data-index="${this.blockCopy[0].id}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -88,29 +125,55 @@ export class MoreDetailsComponent {
                   .map(
                     (task, index) => `
                       <div class="show-more__task-input">
-                          <input type="text" class="show-more__task-input-field ${task.status ? "checked" : ""}" value="${task.item}">
-                          <input type="checkbox" class="show-more__task-input-checkbox" ${task.status ? "checked" : ""}>
+                          <input type="text" class="show-more__task-input-field 
+                          ${task.status ? "checked" : ""}" value="${task.item}">
+                          <input type="checkbox" class="show-more__task-input-checkbox" ${
+                            task.status ? "checked" : ""
+                          }>
                       </div>
                   `
                   )
                   .join("")}
               </div> 
+              <span class="error__form__submit"></span>
               <button type="submit" class="show-more__save-button">Salvar</button>
           </form>
         </div>`;
-  
+
     const item = document.createElement("div");
     item.classList.add("showMore__item");
     item.innerHTML = structure;
     item.querySelector(".showMore__close")?.addEventListener("click", () => {
       this.closeModal();
     });
+
+    // Adiciona evento de ao selecionar checkbox ele risca o texto do input do seu lado
+    const inputCheckboxes = item.querySelectorAll("input[type='checkbox']");
+    inputCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", (event: Event) => {
+        // tem que fazer isso para o ts reconhecer e aceitar o previousElementSibling
+        const target = event.target as HTMLInputElement; // Cast para HTMLInputElement
+
+        // Encontrar o campo de texto relacionado ao checkbox
+        const taskInputField = target.previousElementSibling as HTMLElement;
+
+        if (taskInputField) {
+          // Se o checkbox for marcado, adiciona o risco (line-through)
+          if (target.checked) {
+            taskInputField.style.textDecoration = "line-through";
+          } else {
+            // Se o checkbox não for marcado, remove o risco
+            taskInputField.style.textDecoration = "none";
+          }
+        }
+      });
+    });
+
     this.modal?.appendChild(item);
-  
+
     // Envio da tarefa copiada ao evento submit
     this.modal?.addEventListener("submit", this.handleSubmit);
   }
-  
 
   removeStructureModal() {
     if (this.modal?.firstChild) {
