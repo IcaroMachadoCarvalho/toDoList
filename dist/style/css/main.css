@@ -639,6 +639,10 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
     transform: scale(1.1);
   }
 }
+.showMore__item .error__form__submit {
+  color: red;
+  font-size: 0.75rem;
+}
 .showMore__item .show-more__save-button {
   text-align: center;
   background-color: black;

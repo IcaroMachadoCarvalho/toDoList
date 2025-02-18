@@ -138,6 +138,13 @@
       }
     }
 
+     // Error message
+    //  consertar espaço
+     .error__form__submit{
+      color: red;
+      font-size: $fonte-size-s;
+    }
+
     .show-more__save-button {
       text-align: center;
       background-color: black;
