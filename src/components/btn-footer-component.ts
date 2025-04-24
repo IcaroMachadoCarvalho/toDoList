@@ -1,5 +1,6 @@
 import { BtnCreateFooter } from "../components/btn-create-footer";
 import { BtnColorComponent } from "../components/btn-color-footer";
+import {BtnFilterComponent} from "../components/btn-filter-footer-component";
 
 class BtnFooterComponent {
   // private color!: string;
@@ -10,6 +11,7 @@ class BtnFooterComponent {
 
   btnColorComponent;
   btnCreateComponent;
+  btnFilterComponent;
 
   public template: string = `
       <div class="footer__btn">
@@ -70,7 +72,7 @@ class BtnFooterComponent {
         }
       }
     });
-
+    this.btnFilterComponent = new BtnFilterComponent();
     this.btnColorComponent = new BtnColorComponent();
     this.btnCreateComponent = new BtnCreateFooter();
   }
@@ -120,9 +122,10 @@ class BtnFooterComponent {
     this.hideContent(); // não duplica pois apaga o anterior
 
     if (typeContent === "filter") {
-      divContainerContent.innerHTML = `
-        <h1> hello 1</h1>`;
+      divContainerContent.innerHTML = this.btnFilterComponent.getFilterSectionContent();
       this.footerElement.appendChild(divContainerContent);
+      this.btnFilterComponent.addListenerFilterContent(this.footerElement);
+      this.btnFilterComponent.addCategorySelect();
     }
 
     if (typeContent === "create") {

@@ -52,6 +52,8 @@ export class BtnCreateFooter {
     const btnTitleElement = tab.querySelector("[data-create-title]");
     const listTitleElement = tab.querySelector("[data-create-listTitle]");
 
+    const createdTaskList = tab.querySelector("[data-create-list]")
+
     const btnTaskElement = tab.querySelector("[data-create-task]");
     const btnSaveBlock = tab.querySelector("[data-create-button]");
 

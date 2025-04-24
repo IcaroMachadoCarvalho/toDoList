@@ -5,10 +5,13 @@ import { ServiceLocaltorage } from "../utils/service-localstorage";
 export class MoreDetailsComponent {
   serviceStorage = new ServiceLocaltorage();
   modal: HTMLElement;
+  overlay: HTMLElement;
   blockCopy: Tarefa[];
 
   constructor() {
     this.modal = document.querySelector(".showMore") as HTMLElement;
+    this.overlay = document.querySelector(".overlay") as HTMLElement;
+    this.overlay.addEventListener("click", ()=> this.closeModal())
     this.blockCopy = [];
   }
 
@@ -23,6 +26,8 @@ export class MoreDetailsComponent {
 
   openModal(id: number) {
     this.modal.classList.add("open");
+    this.overlay.classList.add("open");
+    this.overlay.style.height = `${document.documentElement.scrollHeight}px`;
     document.body.classList.add("open");
     this.addStructureModal(id);
   }
@@ -30,6 +35,8 @@ export class MoreDetailsComponent {
   closeModal() {
     this.removeStructureModal();
     this.modal?.classList.remove("open");
+    this.overlay.classList.remove("open");
+    this.overlay.style.height = `0px`;
     document.body.classList.remove("open");
     this.modal.removeEventListener("submit", this.handleSubmit);
   }
@@ -219,6 +226,7 @@ export class MoreDetailsComponent {
       console.log("Alterações detectadas. Salvando mudanças...");
 
       this.saveChanges(item, newCategory, newTarefaItem);
+      location.reload();// Força a atualizar a página e onLoadTs ativa e atualiza os dados
     } else {
       console.log("Nenhuma alteração detectada. Não é necessário salvar.");
     }

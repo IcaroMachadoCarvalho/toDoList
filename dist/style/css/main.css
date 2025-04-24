@@ -83,7 +83,7 @@ main {
 @media (min-width: 768px) {
   main {
     grid-area: m;
-    min-width: 65%;
+    min-width: 90%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 1.5rem;
@@ -147,8 +147,9 @@ main .blockList {
 }
 @media (min-width: 768px) {
   main .blockList {
-    height: 86%;
+    height: fit-content;
     justify-content: start;
+    align-items: start;
     position: relative;
   }
 }
@@ -164,7 +165,8 @@ main .blockList__title {
 }
 main .blockList .blocks {
   width: 100%;
-  height: 150px;
+  height: fit-content;
+  margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
@@ -181,6 +183,7 @@ main .blockList .blocks {
     max-height: 75%;
     padding-right: 10px;
     overflow: auto;
+    margin-bottom: 0;
   }
 }
 main .blockList .blocks__item {
@@ -499,6 +502,49 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   border-radius: 13px;
 }
 
+.filter__search {
+  width: 100%;
+}
+.filter__search select {
+  width: 100%;
+  height: 2.5rem;
+  font-family: "poppins", sans-serif;
+  font-size: 1rem;
+  color: rgb(117, 117, 117);
+  text-indent: 5px;
+  border: 1px solid black;
+  outline: none;
+  margin-bottom: 1rem;
+  border-radius: 50px;
+}
+.filter__search select:focus {
+  outline: 0.1px solid black;
+  border: 1.5px solid black;
+}
+.filter__search input {
+  border-radius: 50px;
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+  color: rgb(117, 117, 117);
+}
+.filter__search input:focus {
+  outline: 0.1px solid black;
+  border: 1.5px solid black;
+}
+.filter__search button {
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  border-radius: 50px;
+  margin: 1rem auto;
+  transition: 0.7s ease;
+}
+.filter__search button:hover, .filter__search button:focus {
+  background-color: white;
+  color: black;
+}
+
 .showMore {
   position: fixed;
   background-color: white;
@@ -676,8 +722,7 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   fill: #ff8000;
 }
 
-body::before {
-  content: "";
+.overlay {
   background-color: rgba(0, 0, 0, 0.432);
   width: 100vw;
   height: 100vh;
@@ -689,10 +734,13 @@ body::before {
   z-index: -1;
   transition: 0.4s ease-in-out;
 }
-
-body.open::before {
+.overlay.open {
   opacity: 1;
   z-index: 9;
+}
+
+body.open {
+  overflow: hidden;
 }
 
 :root {

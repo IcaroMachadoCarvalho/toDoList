@@ -138,9 +138,9 @@
       }
     }
 
-     // Error message
+    // Error message
     //  consertar espaço
-     .error__form__submit{
+    .error__form__submit {
       color: red;
       font-size: $fonte-size-s;
     }
@@ -184,25 +184,22 @@
 }
 
 // background modal
-body {
-  &::before {
-    content: "";
-    background-color: rgba(0, 0, 0, 0.432);
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    z-index: -1;
-    transition: 0.4s ease-in-out;
-  }
-}
-
-body.open {
-  &::before {
+.overlay {
+  background-color: rgba(0, 0, 0, 0.432);
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+  &.open {
     opacity: 1;
     z-index: 9;
   }
+}
+body.open {
+  overflow: hidden;
 }
