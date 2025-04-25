@@ -11,7 +11,7 @@ export class MoreDetailsComponent {
   constructor() {
     this.modal = document.querySelector(".showMore") as HTMLElement;
     this.overlay = document.querySelector(".overlay") as HTMLElement;
-    this.overlay.addEventListener("click", ()=> this.closeModal())
+    this.overlay.addEventListener("click", () => this.closeModal());
     this.blockCopy = [];
   }
 
@@ -42,49 +42,51 @@ export class MoreDetailsComponent {
   }
 
   verifyInputsForm(): boolean {
-  // Seleciona o modal ou o formulário específico onde os inputs de texto estão
-  const form = this.modal.querySelector("form.show-more__form-content");
+    // Seleciona o modal ou o formulário específico onde os inputs de texto estão
+    const form = this.modal.querySelector("form.show-more__form-content");
 
-  if (!form) {
-    console.log("Formulário não encontrado dentro do modal.");
-    return false;
+    if (!form) {
+      console.log("Formulário não encontrado dentro do modal.");
+      return false;
+    }
+
+    // Seleciona apenas os inputs de texto dentro deste formulário específico
+    const inputsTextTaksForm = Array.from(
+      form.querySelectorAll("input[type='text']")
+    ) as Array<HTMLInputElement>;
+
+    if (inputsTextTaksForm.length > 0) {
+      const allFilled = inputsTextTaksForm.every((input) => {
+        const trimmedValue = input.value.trim();
+
+        // Verifica se o valor não é nulo, vazio ou só contém espaços
+        return trimmedValue !== "";
+      });
+
+      console.log("Todos os campos preenchidos?", allFilled);
+      return allFilled;
+    } else {
+      console.log("Nenhum campo de texto encontrado");
+      return false;
+    }
   }
 
-  // Seleciona apenas os inputs de texto dentro deste formulário específico
-  const inputsTextTaksForm = Array.from(form.querySelectorAll("input[type='text']")) as Array<HTMLInputElement>;
-
-  if (inputsTextTaksForm.length > 0) {
-    const allFilled = inputsTextTaksForm.every((input) => {
-      const trimmedValue = input.value.trim();
-
-
-      // Verifica se o valor não é nulo, vazio ou só contém espaços
-      return (
-        trimmedValue !== ""
-      );
-    });
-
-    console.log("Todos os campos preenchidos?", allFilled);
-    return allFilled;
-  } else {
-    console.log("Nenhum campo de texto encontrado");
-    return false;
-  }
-}
-
-// Passa a cópia de `block` para evitar alterações no original
+  // Passa a cópia de `block` para evitar alterações no original
 
   handleSubmit = (e: Event) => {
     e.preventDefault();
-    const isFormComplete:boolean = this.verifyInputsForm();
-    const messageErrorForm:HTMLElement = document.querySelector(".error__form__submit") as  HTMLElement;
+    const isFormComplete: boolean = this.verifyInputsForm();
+    const messageErrorForm: HTMLElement = document.querySelector(
+      ".error__form__submit"
+    ) as HTMLElement;
     if (isFormComplete) {
-      this.checkForChanges(this.blockCopy[0]); 
+      this.checkForChanges(this.blockCopy[0]);
       messageErrorForm.textContent = "";
       this.closeModal();
       return;
     }
-    messageErrorForm.textContent = "Preencha os campos da tarefa/as e da categoria do bloco";
+    messageErrorForm.textContent =
+      "Preencha os campos da tarefa/as e da categoria do bloco";
   };
 
   // Funções internas
@@ -143,7 +145,10 @@ export class MoreDetailsComponent {
                   .join("")}
               </div> 
               <span class="error__form__submit"></span>
-              <button type="submit" class="show-more__save-button">Salvar</button>
+              <div class="show-more__actions">
+                <button class="action__delete">Excluir</button>
+                <button type="submit" class="show-more__save-button">Salvar</button>
+              </div>
           </form>
         </div>`;
 
@@ -152,6 +157,9 @@ export class MoreDetailsComponent {
     item.innerHTML = structure;
     item.querySelector(".showMore__close")?.addEventListener("click", () => {
       this.closeModal();
+    });
+    item.querySelector(".action__delete")?.addEventListener("click", () => {
+      this.deleteBlock(this.blockCopy[0].id);
     });
 
     // Adiciona evento de ao selecionar checkbox ele risca o texto do input do seu lado
@@ -212,21 +220,21 @@ export class MoreDetailsComponent {
       })
     );
 
-    console.log("Newtarefa", newTarefaItem);
+    // console.log("Newtarefa", newTarefaItem);
 
     // Verifica se houve alterações significativas (categoria ou tarefas)
     const categoryChanged = item.category !== newCategory;
     const tasksChanged = !this.compareTasksValues(item.task, newTarefaItem);
 
-    console.log("---Saving:", newCategory);
-    console.log("---Saving:", newTarefaItem);
-    console.log("---Saving:", item.task);
+    // console.log("---Saving:", newCategory);
+    // console.log("---Saving:", newTarefaItem);
+    // console.log("---Saving:", item.task);
     // Se houver alterações, chama o método saveChanges
     if (categoryChanged || tasksChanged) {
       console.log("Alterações detectadas. Salvando mudanças...");
 
       this.saveChanges(item, newCategory, newTarefaItem);
-      location.reload();// Força a atualizar a página e onLoadTs ativa e atualiza os dados
+      location.reload(); // Força a atualizar a página e onLoadTs ativa e atualiza os dados
     } else {
       console.log("Nenhuma alteração detectada. Não é necessário salvar.");
     }
@@ -286,6 +294,15 @@ export class MoreDetailsComponent {
       console.log("-- index here", index);
     } else {
       console.log("Tarefa não encontrada no localStorage para atualização.");
+    }
+  }
+
+  deleteBlock(blockId: number) {
+    const hasPermission = window.confirm("Você deseja apagar esse bloco?");
+    if (hasPermission) {
+      this.serviceStorage.deleteItem(blockId);
+      location.reload();
+      return;
     }
   }
 }

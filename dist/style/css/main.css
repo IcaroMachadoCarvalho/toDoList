@@ -685,6 +685,25 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
     transform: scale(1.1);
   }
 }
+.showMore__item .show-more__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.showMore__item .show-more__actions .action__delete {
+  background-color: rgb(185, 28, 28);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  transition: 0.4s ease-in-out;
+}
+.showMore__item .show-more__actions .action__delete:hover, .showMore__item .show-more__actions .action__delete:focus {
+  background-color: white;
+  border: 1px solid rgb(185, 28, 28);
+  color: rgb(185, 28, 28);
+}
 .showMore__item .error__form__submit {
   color: red;
   font-size: 0.75rem;
@@ -694,8 +713,7 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
   background-color: black;
   color: white;
   padding: 0.5rem 1rem;
-  margin: 10px auto;
-  border-radius: 13px;
+  border-radius: 50px;
   transition: 0.4s ease-in-out;
 }
 .showMore__item .show-more__save-button:hover, .showMore__item .show-more__save-button:focus {
