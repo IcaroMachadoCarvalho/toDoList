@@ -360,6 +360,16 @@ main .blockList .pagination button:hover svg path, main .blockList .pagination b
     height: 2.5rem;
   }
 }
+.footer.open {
+  width: 100%;
+  height: 450px;
+}
+@media (min-width: 768px) {
+  .footer.open {
+    height: 100%;
+    width: 600px;
+  }
+}
 
 .createSection {
   font-size: 1rem;
