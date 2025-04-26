@@ -1,6 +1,6 @@
 import { BtnCreateFooter } from "../components/btn-create-footer";
 import { BtnColorComponent } from "../components/btn-color-footer";
-import {BtnFilterComponent} from "../components/btn-filter-footer-component";
+import { BtnFilterComponent } from "../components/btn-filter-footer-component";
 
 class BtnFooterComponent {
   // private color!: string;
@@ -56,29 +56,37 @@ class BtnFooterComponent {
     // Adicionando event listeners
     this.addEventListeners();
 
-    // window.addEventListener("resize", () => {
-    //   // this.closeTab();
-    
-    //   let tab: HTMLElement | null = document.querySelector(".footer");
-    //   let tabOptions: HTMLElement | null = document.querySelector(".footer__btn");
-    //   if (window.innerWidth >= 768) {
-    //     if (tab !== null) {
-    //       tab.style.width = "100%";
-    //       tab.style.height = "100%";
-    //     }
-    //   } else {
-    //     if (tabOptions) {
-    //       tabOptions.style.flexDirection = "row";
-    //     }
-    //   }
-    // });
+    window.addEventListener("resize", () => {
+      const tab: HTMLElement | null = document.querySelector(".footer");
+      const tabOptions: HTMLElement | null =
+        document.querySelector(".footer__btn");
+      const header = document.querySelector("header");
+      if (window.innerWidth >= 768) {
+        if (tabOptions) {
+          if (tab?.classList.contains("open")) {
+            if (header) {
+              header.style.width = "600px";
+              tab.style.width = "600px";
+            }
+          }
+          tabOptions.style.flexDirection = "column";
+        }
+      } else {
+        if (tabOptions && header && tab) {
+          header.style.width = "100%";
+          tab.style.width = "100%";
+          tabOptions.style.flexDirection = "row";
+        }
+      }
+    });
+
     this.btnFilterComponent = new BtnFilterComponent();
     this.btnColorComponent = new BtnColorComponent();
     this.btnCreateComponent = new BtnCreateFooter();
   }
 
   // Adiciona eventos aos botões do componente footer
-  private addEventListeners(){
+  private addEventListeners() {
     if (this.btnFilter) {
       this.btnFilter.addEventListener("click", () => {
         this.toggleTab();
@@ -105,7 +113,6 @@ class BtnFooterComponent {
         }
       });
     }
-  
   }
 
   // Mostrar conteúdo
@@ -122,21 +129,24 @@ class BtnFooterComponent {
     this.hideContent(); // não duplica pois apaga o anterior
 
     if (typeContent === "filter") {
-      divContainerContent.innerHTML = this.btnFilterComponent.getFilterSectionContent();
+      divContainerContent.innerHTML =
+        this.btnFilterComponent.getFilterSectionContent();
       this.footerElement.appendChild(divContainerContent);
       this.btnFilterComponent.addListenerFilterContent(this.footerElement);
       this.btnFilterComponent.addCategorySelect();
     }
 
     if (typeContent === "create") {
-      divContainerContent.innerHTML = this.btnCreateComponent.createSectionContent();
+      divContainerContent.innerHTML =
+        this.btnCreateComponent.createSectionContent();
       this.footerElement.appendChild(divContainerContent);
       this.btnCreateComponent.addListenerSectionContent(this.footerElement);
       this.btnCreateComponent.addCategorySelect();
     }
 
     if (typeContent === "color") {
-      divContainerContent.innerHTML = this.btnColorComponent.colorSectionContent();
+      divContainerContent.innerHTML =
+        this.btnColorComponent.colorSectionContent();
       this.btnColorComponent.addListenerColorContent(
         this.footerElement,
         divContainerContent
@@ -145,7 +155,7 @@ class BtnFooterComponent {
   }
 
   // Ocultar conteúdo
-  private hideContent(){
+  private hideContent() {
     if (!this.footerElement) {
       throw new Error(
         "O elemento footer não foi renderizado tente recarregar a página"
@@ -162,7 +172,8 @@ class BtnFooterComponent {
   // Fazer o footer se adaptar adifrente telas
   private toggleTab(): void {
     const header: HTMLElement | null = document.querySelector(".header");
-    const tabOptions: HTMLElement | null = document.querySelector(".footer__btn");
+    const tabOptions: HTMLElement | null =
+      document.querySelector(".footer__btn");
     let isOpen: boolean;
     if (!this.footerElement) {
       throw new Error(
@@ -173,21 +184,21 @@ class BtnFooterComponent {
     let isMobile: boolean;
     isMobile = viewPort <= 767 ? true : false;
     isOpen = this.footerElement.classList.contains("open") ? true : false;
-  
+
     if (isOpen && isMobile) {
       this.alternateClassOpen("remove");
-      this.footerElement.style.height = "92px";
-    } else if (isOpen === false && isMobile) {
+      // this.footerElement.style.height = "92px";
+    } else if (!isOpen && isMobile) {
       this.alternateClassOpen("add");
-      this.footerElement.style.height = "450px";
-    } else if (isOpen && isMobile === false) {
+      // this.footerElement.style.height = "450px";
+    } else if (isOpen && !isMobile) {
       this.alternateClassOpen("remove");
-      this.footerElement.style.width = "100%"; 
+      this.footerElement.style.width = "100%";
       if (header && tabOptions) {
         tabOptions.style.flexDirection = "column";
         header.style.width = "100%";
       }
-    } else if (isOpen === false && isMobile === false) {
+    } else if (!isOpen && !isMobile) {
       this.alternateClassOpen("add");
       this.footerElement.style.width = "600px";
       if (header && tabOptions) {
@@ -196,7 +207,7 @@ class BtnFooterComponent {
       }
     }
   }
-  
+
   // Alterna a classe css open do footer
   private alternateClassOpen(option: string): void {
     if (option === "remove") {
@@ -208,13 +219,11 @@ class BtnFooterComponent {
   }
 
   // Fechar aba
-  private closeTab(){
+  private closeTab() {
     this.hideContent();
     this.alternateClassOpen("add");
     this.toggleTab();
   }
-  
 }
-
 
 const btnFooterComponent = new BtnFooterComponent();
