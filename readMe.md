@@ -21,8 +21,8 @@ https://to-do-list-lemon-beta-60.vercel.app/
 
 <h2>Screenshots Mobile e Tablet</h2>
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/0328aa39-bd35-4491-bc0b-3bd19b2fb1f7" alt="img-mobile1" width="33.5%" height="450/">
-  <img src="https://github.com/user-attachments/assets/36d745a4-8a4c-417e-8c62-4079eaf9fe30" alt="img-mobile2" width="33.5%" height="450/">
+  <img src="https://github.com/user-attachments/assets/0328aa39-bd35-4491-bc0b-3bd19b2fb1f7" alt="img-mobile1" width="45.5%" height="450/">
+  <img src="https://github.com/user-attachments/assets/36d745a4-8a4c-417e-8c62-4079eaf9fe30" alt="img-mobile2" width="45.5%" height="450/">
   <img src="https://github.com/user-attachments/assets/60b58209-2d5e-4961-966c-a34e83c3917f" alt="img-mobile3" width="50%" height="400/">
   
 </div>
