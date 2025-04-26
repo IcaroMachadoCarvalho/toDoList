@@ -10,9 +10,12 @@
   font-size: 16px;
 }
 
+// html, body{
+//   overscroll-behavior-y: contain;
+// }
+
 body {
   font-family: $font;
-  // height: 100dvh;
   
   @include responsive(medium) {
     height: 100vh;

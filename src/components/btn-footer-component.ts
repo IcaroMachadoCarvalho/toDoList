@@ -56,22 +56,22 @@ class BtnFooterComponent {
     // Adicionando event listeners
     this.addEventListeners();
 
-    window.addEventListener("resize", () => {
-      this.closeTab();
+    // window.addEventListener("resize", () => {
+    //   // this.closeTab();
     
-      let tab: HTMLElement | null = document.querySelector(".footer");
-      let tabOptions: HTMLElement | null = document.querySelector(".footer__btn");
-      if (window.innerWidth >= 768) {
-        if (tab !== null) {
-          tab.style.width = "100%";
-          tab.style.height = "100%";
-        }
-      } else {
-        if (tabOptions) {
-          tabOptions.style.flexDirection = "row";
-        }
-      }
-    });
+    //   let tab: HTMLElement | null = document.querySelector(".footer");
+    //   let tabOptions: HTMLElement | null = document.querySelector(".footer__btn");
+    //   if (window.innerWidth >= 768) {
+    //     if (tab !== null) {
+    //       tab.style.width = "100%";
+    //       tab.style.height = "100%";
+    //     }
+    //   } else {
+    //     if (tabOptions) {
+    //       tabOptions.style.flexDirection = "row";
+    //     }
+    //   }
+    // });
     this.btnFilterComponent = new BtnFilterComponent();
     this.btnColorComponent = new BtnColorComponent();
     this.btnCreateComponent = new BtnCreateFooter();
